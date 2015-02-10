@@ -1,3 +1,29 @@
+.project
+.classpath
+.settings
+.settings/
+.metadata
+*.prefs
+
+.idea/
+*.iml
+
+target/
+build/
+classes/
+tmp/
+
+.gradle
+.gradle/
+.sonar
+.sonar/
+sonar-project.*
+
+atlassian-ide-plugin.xml
+rebel.xml
+
+.DS_Store
+
 *.class
 
 # Mobile Tools for Java (J2ME)
