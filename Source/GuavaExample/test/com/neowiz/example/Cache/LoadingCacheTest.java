@@ -22,7 +22,7 @@ public class LoadingCacheTest {
 	private static final long CACHE_MAX_SIZE = 1000L;
 	private static final int CACHE_5_MINUTES = 5;
 	
-	private LoadingCache<String, String> CACHE_ITEMS_PRIMARY_KEY = CacheBuilder.newBuilder().softValues().maximumSize(CACHE_MAX_SIZE).expireAfterWrite(CACHE_5_MINUTES, TimeUnit.MINUTES).build(
+	private LoadingCache<String, String> CACHE_ITEMS_PRIMARY_KEY = CacheBuilder.newBuilder().maximumSize(CACHE_MAX_SIZE).expireAfterWrite(CACHE_5_MINUTES, TimeUnit.MINUTES).build(
 			new CacheLoader<String, String>() {
 				@Override
 				public String load(String key) throws Exception {
@@ -30,7 +30,7 @@ public class LoadingCacheTest {
 				}
 			});
 	
-	private LoadingCache<Pair<String, String>, String> CACHE_ITEMS_COMPOSITE_KEY = CacheBuilder.newBuilder().softValues().maximumSize(CACHE_MAX_SIZE).expireAfterWrite(CACHE_5_MINUTES, TimeUnit.MINUTES).build(
+	private LoadingCache<Pair<String, String>, String> CACHE_ITEMS_COMPOSITE_KEY = CacheBuilder.newBuilder().maximumSize(CACHE_MAX_SIZE).expireAfterWrite(CACHE_5_MINUTES, TimeUnit.MINUTES).build(
 			new CacheLoader<Pair<String, String>, String>() {
 				@Override
 				public String load(Pair<String, String> key) throws Exception {
