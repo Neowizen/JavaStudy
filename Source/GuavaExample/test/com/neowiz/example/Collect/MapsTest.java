@@ -18,15 +18,15 @@ public class MapsTest {
 
 	private List<Bakery> bakeryList = null;
 	private Map<String, Bakery> mapItems = null;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		bakeryList = Lists.newArrayList();
-		
+
 		bakeryList.add(new Bakery(BakeryType.BREAD, "크림빵", 12));
 		bakeryList.add(new Bakery(BakeryType.BREAD, "소보로빵", 20));
 		bakeryList.add(new Bakery(BakeryType.MILK, "딸기우유", 300));
-		
+
 		mapItems = Maps.uniqueIndex(bakeryList, Bakery.NAME_FILTER);
 	}
 
@@ -48,11 +48,11 @@ public class MapsTest {
 	@Test
 	public void Maps_filterEntries() {
 		Map<String, Bakery> actual = Maps.filterEntries(mapItems, Bakery.MAP_ENTRY_TYPE_FINDER(BakeryType.MILK));
-		
+
 		assertThat(actual).isNotNull();
 		assertThat(actual).hasSize(1);
 	}
-	
+
 	@Test
 	public void Maps_filterValues() {
 		Map<String, Bakery> actual = Maps.filterValues(mapItems, new Predicate<Bakery>() {
@@ -61,17 +61,17 @@ public class MapsTest {
 				return input.getSaleCnt() >= 20;
 			}
 		});
-		
+
 		assertThat(actual).isNotNull();
 		assertThat(actual).hasSize(2);
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void Maps_check_same_key() {
 		List<Bakery> checkList = Lists.newArrayList(bakeryList);
 		checkList.add(new Bakery(BakeryType.BREAD, "소보로빵", 20));
-		
+
 		Maps.uniqueIndex(checkList, Bakery.NAME_FILTER);
 	}
-	
+
 }
