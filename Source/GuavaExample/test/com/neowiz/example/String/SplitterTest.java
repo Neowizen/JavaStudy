@@ -15,7 +15,7 @@ public class SplitterTest {
 
 	private String stringMessage = null;
 	private String stringParemeter = null;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		stringMessage = "Hello//world //!";
@@ -43,7 +43,7 @@ public class SplitterTest {
 		assertThat(actual.get(3)).isEmpty();
 		assertThat(actual.get(4)).isEqualTo("!");
 	}
-	
+
 	@Test
 	public void Splitter_omitEmptyStrings() {
 		List<String> actual = Lists.newArrayList(Splitter.on("/").trimResults().omitEmptyStrings().split(stringMessage));
@@ -52,7 +52,7 @@ public class SplitterTest {
 		assertThat(actual.get(1)).isEqualTo("world");
 		assertThat(actual.get(2)).isEqualTo("!");
 	}
-	
+
 	@Test
 	public void Splitter_splitToList() {
 		List<String> actual = Splitter.on("/").trimResults().omitEmptyStrings().splitToList(stringMessage);
@@ -61,15 +61,15 @@ public class SplitterTest {
 		assertThat(actual.get(1)).isEqualTo("world");
 		assertThat(actual.get(2)).isEqualTo("!");
 	}
-	
+
 	@Test
 	public void Splitter_MapSplitter() {
 		Splitter.MapSplitter splitterMapSplitter = Splitter.on("&").trimResults().omitEmptyStrings().withKeyValueSeparator("=");
-		
+
 		Map<String, String> actual = splitterMapSplitter.split(stringParemeter);
-		
+
 		assertThat(actual.get("searchKey")).isEqualTo("ID");
 		assertThat(actual.get("searchVal")).isEqualTo("123");
 	}
-	
+
 }

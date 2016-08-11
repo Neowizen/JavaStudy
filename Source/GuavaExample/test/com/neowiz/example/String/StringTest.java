@@ -43,6 +43,7 @@ public class StringTest {
 		System.out.println(new String(decodeByte, "UTF-16LE"));
 	}
 
+	@Ignore
 	@Test
 	public void test3() {
 		String text = "tabIndex=\"-1\" src=\"msoinline/ab5ee8109ea444e2\" xd:inline=\"iVBORw0KGg\"   dsdsds  tabIndex=\"-1\" src=\"msoinline/ab5ee8109ea444e2\" xd:inline=\"iVBORw0KGg\" src=\"x-view://44bade4a/msoinline/a0efd3114606487d\" xmlns=\"http://www.w3.org/1999/xhtml\" xd:inline=\"22iVBORw0KGgoAAAAN\"";
@@ -62,6 +63,16 @@ public class StringTest {
 		}
 
 		System.out.println(text);
+	}
+
+	@Test
+	public void test4() {
+		String test = "NWGMS_PUB,2000000002,20000000152,2000000015_2,2000000160,2000000160";
+		String find = "2000000015";
+
+		Matcher matcher = Pattern.compile(find).matcher(test);
+
+		System.out.println(matcher.find());
 	}
 
 }

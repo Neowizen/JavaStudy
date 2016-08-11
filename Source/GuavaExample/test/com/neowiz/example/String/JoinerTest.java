@@ -25,14 +25,14 @@ public class JoinerTest {
 		stringList.add("Hello");
 		stringList.add("world");
 		stringList.add("!");
-		
+
 		stringWithNullList = Lists.newArrayList();
 
 		stringWithNullList.add("Hello");
 		stringWithNullList.add(null);
 		stringWithNullList.add("world");
 		stringWithNullList.add("!");
-		
+
 		stringMap = Maps.newHashMap();
 		stringMap.put("searchKey", "ID");
 		stringMap.put("searchVal", 123);
@@ -40,25 +40,25 @@ public class JoinerTest {
 
 	@Test
 	public void Joiner_on() {
-		String actual = Joiner.on("/").join(stringList);
-		
+		String actual = Joiner.on("/").useForNull("null").join(stringList);
+
 		assertThat(actual).isEqualTo("Hello/world/!");
 	}
 
 	@Test
 	public void Joiner_skipNulls() {
 		String actual = Joiner.on("/").skipNulls().join(stringWithNullList);
-		
+
 		assertThat(actual).isEqualTo("Hello/world/!");
 	}
-	
+
 	@Test
 	public void Joiner_MapJoiner() {
-		Joiner.MapJoiner joinerMapJoiner = Joiner.on('&').withKeyValueSeparator("=");
-		
-		String actual = joinerMapJoiner.join(stringMap);
+		Joiner.MapJoiner joinerMapJoiner = Joiner.on("&").withKeyValueSeparator("=");
+
+		String actual = joinerMapJoiner.useForNull("null").join(stringMap);
 
 		assertThat(actual).isEqualTo("searchKey=ID&searchVal=123");
 	}
-	
+
 }
